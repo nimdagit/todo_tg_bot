@@ -100,4 +100,4 @@ async def handle_delete(callback: types.CallbackQuery):
 
 @router.message(Command('help'))
 async def help(message:types.Message):
-    await message.answer(f'Что умеет бот:\n/start -> Регистрация пользователя\n/add -> Добавляет задачу и дедлайн пользователя\n/task_list -> Выдает список задач пользователя с кнопками на изменение статуса и удаление задачи')
+    await message.answer(f'Что умеет бот:\n/start -> Регистрация пользователя\n/add -> Добавляет задачу и дедлайн пользователя\n/task_list -> Выдает список задач пользователя с кнопками на изменение статуса и удаление задачи\nПроект работает 24/7 с небольшой задержкой примерно в минуту')
