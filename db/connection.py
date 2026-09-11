@@ -1,12 +1,16 @@
-import sqlite3
+import psycopg2
+from decouple import config
 
 
-def conn(db_name):
-    conn = None
+DATABASE_URL = config('DATABASE_URL')
+
+
+def get_connection():
     try:
-        conn = sqlite3.connect(db_name)
-    except sqlite3.Error as e:
+        return psycopg2.connect(DATABASE_URL)
+    except psycopg2.Error as e:
         print(e)
-    return conn
+        return None
 
-conn = conn(r'.\month_C\todo\db\tasks_and_users.db')
+
+conn = get_connection()

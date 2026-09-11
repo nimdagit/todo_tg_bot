@@ -1,17 +1,18 @@
-import sqlite3
+import psycopg2
 import db.connection as connection
 
-
 conn = connection.conn
+
+
 def does_the_string_exist(tg_id, conn=conn):
-    sql_core = """SELECT * from users where tg_id = ?"""
+    sql_core = """SELECT * FROM users WHERE tg_id = %s"""
     therow = None
     try:
         cursor = conn.cursor()
         cursor.execute(sql_core, (tg_id,))
         therow = cursor.fetchall()
         print(f'the user {therow} registrated')
-    except sqlite3.Error as e:
+    except psycopg2.Error as e:
         print(e)
     if therow:
         return True
@@ -20,7 +21,7 @@ def does_the_string_exist(tg_id, conn=conn):
 
 
 def task_list(user_id, conn=conn):
-    sql_core = """SELECT * FROM tasks where user_id = ?"""
+    sql_core = """SELECT * FROM tasks WHERE user_id = %s"""
     task_list = None
     try:
         cursor = conn.cursor()
@@ -28,7 +29,7 @@ def task_list(user_id, conn=conn):
         task_list = cursor.fetchall()
         for task in task_list:
             print(task)
-    except sqlite3.Error as e:
+    except psycopg2.Error as e:
         print(e)
     if task_list:
         return task_list
